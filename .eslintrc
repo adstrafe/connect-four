@@ -1,0 +1,9 @@
+{
+	"root": true,
+	"extends": [
+		"@calmdownval/eslint-config",
+		"@calmdownval/eslint-config/typescript",
+		"@calmdownval/eslint-config/import",
+		"@calmdownval/eslint-config/typescript-import"
+	]
+}
