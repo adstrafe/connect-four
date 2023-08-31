@@ -1,24 +1,22 @@
 import type { GameGrid } from './GameGrid';
 import type { Player } from './Player';
+import type { RoundController } from './RoundController';
 
 export class Game {
 	public constructor(
 		public player1: Player,
 		public player2: Player,
-		public grid: GameGrid
+		public grid: GameGrid,
+		public rc: RoundController
 	) {
-		this.player1.color = 'blue';
-		this.player2.color = 'red';
-	}
-
-	public get currentPlayer(): Player {
-		// return the player whose turn it is now
-		// should alternate between player1 and player2 until the game ends
-
+		// TODO: names should be an input from players
+		this.player1.name = 'Player1';
+		this.player2.name = 'Player2';
+		this.rc.roundCount = 0;
 	}
 
 	public dropStone(column: number) {
-		// TODO: Get player whose turn it is
-		this.grid.dropStone(column);
+		this.grid.dropStone(this.rc.playerTurn([ this.player1, this.player2 ]), column);
+		this.rc.nextRound();
 	}
 }
